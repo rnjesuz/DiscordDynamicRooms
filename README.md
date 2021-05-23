@@ -15,3 +15,14 @@ A discord bot to dinamically create voice rooms
 3) In a console terminal type: 'node start' or 'node ./src/dynamicrooms.js'
     * Requires Node.js to be installed
 
+## ToDo
+Init procedure to account for existing channels on bot start up.
+Problem:
+Existing channels are not taken into account on start up. Those chabbels may duplicate the ones in the provided list of channel names.
+Although no error is produced, the server may end up with rooms with duplicated names.
+Solution:
+Create a validation routine on start up. Options:
+1) Cleanup the entiry category to enforce a clean start up without any voice channels - This may disconnect users if the bot has an unplanned restart
+2) Verify existing channel names and update the internal pool, removing those already existing.
+
+* Maybe also make use of a Map/Set to enforce uniqueness at the collection level (instead of Array)
