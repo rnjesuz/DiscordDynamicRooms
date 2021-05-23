@@ -13,6 +13,9 @@ client.login(process.env.BOT_APITOKEN);
 
 client.on('ready', () => {
   console.log('DiscordDynamicRooms bot turning on');
+
+  startUpSequence();
+
   setInterval(() => {
     client.guilds
     .fetch(GUILD_ID, false, false)
@@ -73,6 +76,19 @@ function deleteChannel(emptyVoiceChannels) {
     channel.delete();
     CHANNELS_NAMES.add(channel.name);
   }
+}
+
+function startUpSequence() {
+  client.guilds
+    .fetch(GUILD_ID, false, false)
+    .then(guild => {      
+      let existingGuildChannels = guild.channels.cache.filter(
+        channel => filterGuildChannelsOnParentCategory(channel)
+      );
+      existingGuildChannels.forEach(function(channel) {
+        CHANNELS_NAMES.delete(channel.name); 
+      });
+    });
 }
 
 function shutdown() {
