@@ -21,7 +21,7 @@ Problem:\
 Existing channels are not taken into account on start up. Those chabbels may duplicate the ones in the provided list of channel names.\
 Although no error is produced, the server may end up with rooms with duplicated names.\
 Solution:\
-Create a validation routine on start up. Options:\
+Create a validation routine on start up. Options:
 1) Cleanup the entiry category to enforce a clean start up without any voice channels - This may disconnect users if the bot has an unplanned restart
 2) Verify existing channel names and update the internal pool, removing those already existing.
 
