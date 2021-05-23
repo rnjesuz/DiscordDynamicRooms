@@ -7,7 +7,7 @@ const REFRESH_RATE = process.env.BOT_REFRESHRATE;
 const GUILD_ID = process.env.BOT_GUILD_ID;
 const USE_PARENT_CATEGORY = process.env.CHANNELS_PARENTCATEGORY_USE;
 const PARENT_CATEGORY_ID = process.env.CHANNELS_PARENTCATEGORY_ID;
-const CHANNELS_NAMES = process.env.CHANNELS_NAMES.split(',');
+const CHANNELS_NAMES = new Set(process.env.CHANNELS_NAMES.split(','));
 
 client.login(process.env.BOT_APITOKEN);
 
@@ -45,21 +45,22 @@ function filterGuildChannelsOnParentCategory(channel) {
 }
 
 function createChannel(guild) {
-  var channelName = ['Overflow...BeepBoop'];
-  if(CHANNELS_NAMES.length > 0) {
-    channelName = CHANNELS_NAMES.splice(Math.floor(Math.random()*CHANNELS_NAMES.length), 1);
+  var channelName = 'Overflow...BeepBoop';
+  if(CHANNELS_NAMES.size > 0) {
+    var randomIndex = Math.floor(Math.random() * CHANNELS_NAMES.size);
+    channelName = Array.from(CHANNELS_NAMES.values())[randomIndex];
   }
 
   if(USE_PARENT_CATEGORY === 'true' && PARENT_CATEGORY_ID) {
     console.log('Creating new voice channel under parent category ' + PARENT_CATEGORY_ID);
     guild.channels
-    .create(channelName[0], {type: 'voice', parent: PARENT_CATEGORY_ID})
+    .create(channelName, {type: 'voice', parent: PARENT_CATEGORY_ID})
     .then(console.log)
     .catch(err => console.error(channelName, err));
   } else {
     console.log('Creating new voice channel');
     guild.channels
-    .create(channelName[0], {type: 'voice'})
+    .create(channelName, {type: 'voice'})
     .then(console.log)
     .catch(err => console.error(channelName, err));
   }
@@ -70,7 +71,7 @@ function deleteChannel(emptyVoiceChannels) {
     channel = emptyVoiceChannels.last();
     console.log('Deleting voice channel. id: ' + channel + ', name: ' + channel.name);
     channel.delete();
-    CHANNELS_NAMES.push(channel.name);
+    CHANNELS_NAMES.add(channel.name);
   }
 }
 
