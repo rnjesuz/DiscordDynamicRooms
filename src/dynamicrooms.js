@@ -68,7 +68,7 @@ function createChannel(guild) {
 function deleteChannel(emptyVoiceChannels) {
   if (emptyVoiceChannels.last()) {
     channel = emptyVoiceChannels.last();
-    console.log('Deleting voice channel: ' + channel + ';' + channel.name);
+    console.log('Deleting voice channel. id: ' + channel + ', name: ' + channel.name);
     channel.delete();
     CHANNELS_NAMES.push(channel.name);
   }
