@@ -2,11 +2,12 @@ require('dotenv').config();
 require('console-stamp')(console, '[HH:MM:ss.l]');
 
 const { Client } = require('discord.js');
-const client = new Client()
-const REFRESH_RATE = process.env.BOT_REFRESHRATE
-const GUILD_ID = process.env.BOT_GUILD_ID
-const USE_PARENT_CATEGORY = process.env.CHANNELS_PARENTCATEGORY_USE
-const PARENT_CATEGORY_ID = process.env.CHANNELS_PARENTCATEGORY_ID
+const client = new Client();
+const REFRESH_RATE = process.env.BOT_REFRESHRATE;
+const GUILD_ID = process.env.BOT_GUILD_ID;
+const USE_PARENT_CATEGORY = process.env.CHANNELS_PARENTCATEGORY_USE;
+const PARENT_CATEGORY_ID = process.env.CHANNELS_PARENTCATEGORY_ID;
+const CHANNELS_NAMES = process.env.CHANNELS_NAMES.split(',');
 
 client.login(process.env.BOT_APITOKEN);
 
