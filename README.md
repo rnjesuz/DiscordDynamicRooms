@@ -11,7 +11,7 @@ A discord bot to dinamically create voice rooms
 
 ## Run
 1) Copy the .env.example file to a new .env file
-2) Update the configurations to the wanted values
+2) Update properties to desired values
 3) In a console terminal type: 'node start' or 'node ./src/dynamicrooms.js'
     * Requires Node.js to be installed
 
