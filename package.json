@@ -1,0 +1,25 @@
+{
+  "name": "DiscordDynamicRooms",
+  "version": "1.0.0",
+  "description": "dynamically creates empty voice rooms",
+  "main": "src/dynamicrooms.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/dynamicrooms.js",
+    "dev": "nodemon ./src/dynamicrooms.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rnjesuz/DiscordDynamicRooms.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rnjesuz/DiscordDynamicRooms/issues"
+  },
+  "homepage": "https://github.com/rnjesuz/DiscordDynamicRooms#readme",
+  "dependencies": {
+    "discord.js": "^12.5.3"
+  }
+}
