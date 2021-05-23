@@ -37,7 +37,7 @@ client.on('ready', () => {
 })
 
 function filterGuildChannelsOnParentCategory(channel) {
-  if(USE_PARENT_CATEGORY == true) {
+  if(USE_PARENT_CATEGORY === 'true') {
     return channel.parent && channel.parent.id === PARENT_CATEGORY_ID && channel.type === 'voice';
   } else {
     return !channel.parent && channel.type === 'voice';
@@ -45,7 +45,7 @@ function filterGuildChannelsOnParentCategory(channel) {
 }
 
 function createChannel(guild) {
-  if(USE_PARENT_CATEGORY == true && PARENT_CATEGORY_ID) {
+  if(USE_PARENT_CATEGORY === 'true' && PARENT_CATEGORY_ID) {
     console.log('Creating new voice channel under parent category ' + PARENT_CATEGORY_ID);
     guild.channels
     .create('🔁', {type: 'voice', parent: PARENT_CATEGORY_ID})
