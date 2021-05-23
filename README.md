@@ -7,6 +7,7 @@ A discord bot to dinamically create voice rooms
 * BOT_GUILD_ID: This bot is made to be single-server. This is the server id in which we wish to run the bot.
 * CHANNELS_PARENTCATEGORY_USE: True or false. If the bot should create channels in a specific category. If *true*, the *channels.parent_category.id* property must also be set.
 * CHANNELS_PARENTCATEGORY_ID: The bot creates voice rooms under a specific category. This is the id of that category.
+* CHANNELS_NAMES: A list of names for the bot to use when creating new rooms. The list needs to be delimited by commas (','). Everything written between commas will be used as is.
 
 ## Run
 1) Copy the .env.example file to a new .env file

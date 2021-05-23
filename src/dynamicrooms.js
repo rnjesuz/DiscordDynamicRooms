@@ -45,25 +45,32 @@ function filterGuildChannelsOnParentCategory(channel) {
 }
 
 function createChannel(guild) {
+  var channelName = ['Overflow...BeepBoop'];
+  if(CHANNELS_NAMES.length > 0) {
+    channelName = CHANNELS_NAMES.splice(Math.floor(Math.random()*CHANNELS_NAMES.length), 1);
+  }
+
   if(USE_PARENT_CATEGORY === 'true' && PARENT_CATEGORY_ID) {
     console.log('Creating new voice channel under parent category ' + PARENT_CATEGORY_ID);
     guild.channels
-    .create('🔁', {type: 'voice', parent: PARENT_CATEGORY_ID})
+    .create(channelName[0], {type: 'voice', parent: PARENT_CATEGORY_ID})
     .then(console.log)
-    .catch(err => console.error(channel.name, err));
+    .catch(err => console.error(channelName, err));
   } else {
     console.log('Creating new voice channel');
     guild.channels
-    .create('🔁', {type: 'voice'})
+    .create(channelName[0], {type: 'voice'})
     .then(console.log)
-    .catch(err => console.error(channel.name, err));
+    .catch(err => console.error(channelName, err));
   }
 }
 
 function deleteChannel(emptyVoiceChannels) {
   if (emptyVoiceChannels.last()) {
-    console.log('Deleting voice channel: ' + emptyVoiceChannels.last() + ';' + emptyVoiceChannels.last().name);
-    emptyVoiceChannels.last().delete();
+    channel = emptyVoiceChannels.last();
+    console.log('Deleting voice channel: ' + channel + ';' + channel.name);
+    channel.delete();
+    CHANNELS_NAMES.push(channel.name);
   }
 }
 
